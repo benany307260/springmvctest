@@ -29,4 +29,13 @@
       <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
   </listener>
   
+  <!-- <servlet-mapping>
+    <servlet-name>jsp</servlet-name>
+    <url-pattern>*.html</url-pattern>
+  </servlet-mapping> -->
+  
+  <welcome-file-list>
+      <welcome-file>index.html</welcome-file>
+  </welcome-file-list>
+  
 </web-app>

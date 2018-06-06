@@ -23,10 +23,22 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
         </property>
     </bean>
     
-	<mvc:annotation-driven>  
-		<mvc:message-converters>  
-			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter"/>  
-    	</mvc:message-converters>  
-	</mvc:annotation-driven> 
+	<bean id="objectMapper" class="com.testcomp.testweb.CustomObjectMapper" init-method="init">  
+		<property name="camelCaseToLowerCaseWithUnderscores" value="true"/>  
+		<property name="dateFormatPattern" value="yyyy-MM-dd HH:mm:ss"/>  
+	</bean>
+    
+	<mvc:annotation-driven>
+		<mvc:message-converters>
+			<bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+				<property name="objectMapper" ref="objectMapper"/>
+			</bean>
+    	</mvc:message-converters>
+	</mvc:annotation-driven>
+	
+	<bean class="org.springframework.validation.beanvalidation.MethodValidationPostProcessor"/>
+	
+	<!-- springmvc不能处理的请求就走默认的，例如请求index.html -->
+	<mvc:default-servlet-handler/>
     
 </beans>
