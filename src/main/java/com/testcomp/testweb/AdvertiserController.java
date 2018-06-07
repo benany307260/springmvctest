@@ -12,13 +12,13 @@ import org.springframework.web.bind.annotation.RestController;
 public class AdvertiserController {  
   
     @RequestMapping(value = "/advertiser", method = RequestMethod.POST)  
-    public Response createAdvertiser(@RequestBody @Valid AdvertiserParam advertiserParam) {  
+    public ResponseBean createAdvertiser(@RequestBody @Valid AdvertiserParam advertiserParam) {  
     	String msg = "你的名字："+advertiserParam.getAdvertiserName()+"，说明："+advertiserParam.getDescription();
-        return new Response().success(msg);
+        return new ResponseBean().success(msg);
     }  
   
     @RequestMapping(value = "/advertiser/{id}", method = RequestMethod.GET)  
-    public Response getAdvertiser(@PathVariable("id") String advertiserId) {  
-    	return new Response().success();
+    public ResponseBean getAdvertiser(@PathVariable("id") String advertiserId) {  
+    	return new ResponseBean().success();
     }  
 }  

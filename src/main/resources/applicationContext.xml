@@ -15,12 +15,13 @@
                     http://www.springframework.org/schema/tx/spring-tx-4.1.xsd  
                     http://www.springframework.org/schema/aop   
                     http://www.springframework.org/schema/aop/spring-aop-4.1.xsd  
-                    http://www.springframework.org/schema/context        
-                    http://www.springframework.org/schema/context/spring-context-4.1.xsd  
+					http://www.springframework.org/schema/context
+					http://www.springframework.org/schema/context/spring-context-4.1.xsd  
                     http://www.springframework.org/schema/cache   
                     http://www.springframework.org/schema/cache/spring-cache-4.1.xsd  
                     http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd   
-                    http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa.xsd" >
+                    http://www.springframework.org/schema/data/jpa 
+                    http://www.springframework.org/schema/data/jpa/spring-jpa.xsd" >
        
        
     <!-- 配置组件扫描器，使用注解方式开发,不用配置dao和service -->
@@ -74,7 +75,7 @@
     </bean>  
       
     <!-- Jpa 事务配置 -->  
-    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">  
+    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
         <property name="entityManagerFactory" ref="entityManagerFactory"/>  
     </bean>  
   

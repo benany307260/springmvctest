@@ -15,6 +15,7 @@
 			success: function(data){
 				var resdata = data.data, rescode = data.meta.success , message = data.meta.message;
 				alert(message+"----"+resdata);
+				successFunc(data);
 			},
 			error:function(data){
 				alert(data.responseJSON.meta.message);
@@ -146,5 +147,28 @@ function submitData() {
 $('.btnAdd').on('click', function(){
 	submitData();
 });
+
+
+$('.btnAddUser').on('click', function(){
+	submitUser();
+});
+
+function submitUser() {
+	
+	var name = $("#txtUserName").val();
+	var account = $("#txtUserAccount").val();
+    var data = {
+    		name: name,
+    		account: account
+	};
+    
+    var dataJson = JSON.stringify(data);
+    
+    var port = "user";
+    var successFunc = function(data) {
+            alert("保存成功");
+    };
+    loadData(port, null, true, dataJson, successFunc);
+};
 
 
