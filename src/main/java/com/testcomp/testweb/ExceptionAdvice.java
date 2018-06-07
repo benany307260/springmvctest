@@ -1,11 +1,10 @@
 package com.testcomp.testweb;
 
-import javax.validation.ValidationException;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpMediaTypeNotSupportedException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -19,8 +18,8 @@ public class ExceptionAdvice {
      * 400 - Bad Request 
      */  
     @ResponseStatus(HttpStatus.BAD_REQUEST)  
-    @ExceptionHandler(ValidationException.class)  
-    public Response handleValidationException(ValidationException e) {  
+    @ExceptionHandler(MethodArgumentNotValidException.class)  
+    public Response handleValidationException(MethodArgumentNotValidException e) {  
         //logger.error("参数验证失败", e);  
         return new Response().failure("validation_exception");  
     }
@@ -32,6 +31,7 @@ public class ExceptionAdvice {
     @ExceptionHandler(HttpMessageNotReadableException.class)  
     public Response handleHttpMessageNotReadableException(HttpMessageNotReadableException e) {  
         //logger.error("参数解析失败", e);  
+    	e.printStackTrace();
         return new Response().failure("could_not_read_json");  
     }
   

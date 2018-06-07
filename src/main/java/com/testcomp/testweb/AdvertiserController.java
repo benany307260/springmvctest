@@ -13,7 +13,8 @@ public class AdvertiserController {
   
     @RequestMapping(value = "/advertiser", method = RequestMethod.POST)  
     public Response createAdvertiser(@RequestBody @Valid AdvertiserParam advertiserParam) {  
-        return new Response().success();
+    	String msg = "你的名字："+advertiserParam.getAdvertiserName()+"，说明："+advertiserParam.getDescription();
+        return new Response().success(msg);
     }  
   
     @RequestMapping(value = "/advertiser/{id}", method = RequestMethod.GET)  

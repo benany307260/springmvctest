@@ -24,7 +24,8 @@ http://www.springframework.org/schema/mvc/spring-mvc-4.1.xsd">
     </bean>
     
 	<bean id="objectMapper" class="com.testcomp.testweb.CustomObjectMapper" init-method="init">  
-		<property name="camelCaseToLowerCaseWithUnderscores" value="true"/>  
+		<!-- 属性命名由驼峰转下划线 -->
+		<property name="camelCaseToLowerCaseWithUnderscores" value="false"/>  
 		<property name="dateFormatPattern" value="yyyy-MM-dd HH:mm:ss"/>  
 	</bean>
     
