@@ -169,6 +169,7 @@ function submitUser() {
     	var resdata = data.data, rescode = data.meta.success , message = data.meta.message;
     	if(data.meta.success)
     	{
+    		loadUser();
     		alert("保存成功");
     	}
     };
