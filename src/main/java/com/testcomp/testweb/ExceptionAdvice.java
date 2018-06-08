@@ -21,7 +21,7 @@ public class ExceptionAdvice {
     @ExceptionHandler(MethodArgumentNotValidException.class)  
     public ResponseBean handleValidationException(MethodArgumentNotValidException e) {  
         //logger.error("参数验证失败", e);  
-        return new ResponseBean().failure("validation_exception");  
+        return new ResponseBean().failure("参数不正确，验证失败");  
     }
     
     /** 

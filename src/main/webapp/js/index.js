@@ -13,8 +13,8 @@
 			dataType: 'json',
 			data: data,
 			success: function(data){
-				var resdata = data.data, rescode = data.meta.success , message = data.meta.message;
-				alert(message+"----"+resdata);
+				//var resdata = data.data, rescode = data.meta.success , message = data.meta.message;
+				//alert(message+"----"+resdata);
 				successFunc(data);
 			},
 			error:function(data){
@@ -166,9 +166,60 @@ function submitUser() {
     
     var port = "user";
     var successFunc = function(data) {
-            alert("保存成功");
+    	var resdata = data.data, rescode = data.meta.success , message = data.meta.message;
+    	if(data.meta.success)
+    	{
+    		alert("保存成功");
+    	}
     };
     loadData(port, null, true, dataJson, successFunc);
 };
 
+function loadUser() {
+	
+	//var name = $("#txtUserName").val();
+	//var account = $("#txtUserAccount").val();
+    var data = {
+    		name: "",
+    		account: ""
+	};
+    
+    var dataJson = JSON.stringify(data);
+    
+    var port = "searchUser";
+    
+    var successFunc = function(data) {
+    	if(!data.meta.success)
+    	{
+    		return;
+    	}
+		
+		$("#tbody").empty();
+		var dataList = data.data;
+		for (var i = 0; i < dataList.length; i++) 
+		{
+			var html = '<tr data-id="' + dataList[i].id + '">'
+					+ '<td>' + dataList[i].id + '</td>'
+					+ '<td>' + dataList[i].name + '</td>'
+					+ '<td>' + dataList[i].account + '</td>'
+					+ '</tr>'
+				
+			$("#tbody").append(html);
+		}
+		
+	};
+    
+   /* var successFunc = function(data) {
+    	var resdata = data.data, rescode = data.meta.success , message = data.meta.message;
+    	if(data.meta.success)
+    	{
+    		alert("保存成功");
+    	}
+    };*/
+    loadData(port, null, true, dataJson, successFunc);
+};
+
+$(document).ready(function(){
+	loadUser();
+});
 

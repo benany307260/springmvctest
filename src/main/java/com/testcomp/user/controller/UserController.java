@@ -30,7 +30,7 @@ public class UserController {
 			boolean addRes = userService.add(user);
 			if(addRes)
 			{
-				return new ResponseBean().success();
+				return new ResponseBean().success("存库成功");
 			}
 			else
 			{
@@ -42,7 +42,7 @@ public class UserController {
 		}
     }  
   
-    @RequestMapping(value = "/searchUser", method = RequestMethod.GET)  
+    @RequestMapping(value = "/searchUser", method = RequestMethod.POST)  
     public ResponseBean r_user(@RequestBody UserParamBean userParamBean) {
     	try {
 			List<User> userList = userService.findAll();
