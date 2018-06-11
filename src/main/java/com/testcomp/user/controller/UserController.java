@@ -60,9 +60,8 @@ public class UserController {
     @RequestMapping(value = "/searchUserDubbo", method = RequestMethod.POST)  
     public ResponseBean r_user_dubbo(@RequestBody UserParamBean userParamBean) {
     	try {
-    		String user = userDubboService.findAllUser();
-			//List<User> userList = userService.findAll();
-			return new ResponseBean().success(user);
+    		List<User> userList = userDubboService.findAllUser();
+			return new ResponseBean().success(userList);
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new ResponseBean().failure("内部异常");
