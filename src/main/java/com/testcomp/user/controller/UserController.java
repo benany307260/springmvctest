@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.testcomp.dao.UserService;
+import com.testcomp.dubbo.service.UserDubboService;
 import com.testcomp.entity.User;
 import com.testcomp.testweb.ResponseBean;
 import com.testcomp.user.bean.UserParamBean;
@@ -20,6 +21,9 @@ public class UserController {
   
 	@Autowired  
     private UserService userService;
+	
+	@Autowired
+	private UserDubboService userDubboService;
 	
     @RequestMapping(value = "/user", method = RequestMethod.POST)  
     public ResponseBean c_user(@RequestBody @Valid UserParamBean userParamBean) {
@@ -51,5 +55,18 @@ public class UserController {
 			e.printStackTrace();
 			return new ResponseBean().failure("内部异常");
 		}
-    }  
+    }
+    
+    @RequestMapping(value = "/searchUserDubbo", method = RequestMethod.POST)  
+    public ResponseBean r_user_dubbo(@RequestBody UserParamBean userParamBean) {
+    	try {
+    		String user = userDubboService.findAllUser();
+			//List<User> userList = userService.findAll();
+			return new ResponseBean().success(user);
+		} catch (Exception e) {
+			e.printStackTrace();
+			return new ResponseBean().failure("内部异常");
+		}
+    }
+    
 }  
